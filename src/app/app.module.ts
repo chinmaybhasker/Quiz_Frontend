@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomepageComponent } from './homepage/homepage.component';
 import { QuizComponent } from './quiz/quiz.component';
+import { ScoreBoardComponent } from './score-board/score-board.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { QuizComponent } from './quiz/quiz.component';
     LoginComponent,
     SignUpComponent,
     HomepageComponent,
-    QuizComponent
+    QuizComponent,
+    ScoreBoardComponent
     
   ],
   imports: [

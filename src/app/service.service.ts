@@ -16,8 +16,8 @@ import { LoginData } from './login/login.modal';
   providedIn: 'root'
 })
 export class ServiceService implements OnInit {
-  getDetailsOfHotel() : Observable<any>{
-    return this.http.get<any>('http://localhost:8080/getHotelDetails');
+  getQuestionDetail(value : any) : Observable<any>{
+    return this.http.get<any>('http://localhost:8080/getHotelDetails?'+'number='+value);
   }
 
 
@@ -35,8 +35,8 @@ export class ServiceService implements OnInit {
     return this.http.post<string>('http://localhost:8080/login', data);
   }
 
-  postResponse(data : any) : Observable<any>{
-    return  this.http.post<any>('http://localhost:8080/increasedRoom', data);
+  postaddResponse(data : any) : Observable<any>{
+    return  this.http.post<any>('http://localhost:8080/addResult', data);
   }
 
   ngOnInit(): void {

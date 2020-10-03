@@ -1,6 +1,6 @@
 export class Question{
 
-    private questionNumber: number;
+    private questionNumber: String;
    
     private question: String;
 
@@ -24,24 +24,24 @@ export class Question{
     }
    
     public getoptionB(): String {
-        return this.optionA;
+        return this.optionB;
     }
     public setoptionB(value: String) {
-        this.optionA = value;
+        this.optionB = value;
     }
 
     public getoptionC(): String {
-        return this.optionA;
+        return this.optionC;
     }
     public setoptionC(value: String) {
-        this.optionA = value;
+        this.optionC = value;
     }
   
     public getoptionD(): String {
-        return this.optionA;
+        return this.optionD;
     }
     public setoptionD(value: String) {
-        this.optionA = value;
+        this.optionD = value;
     }
 
     public getoptionA(): String {
@@ -57,10 +57,10 @@ export class Question{
         this.question = value;
     }
 
-    public getquestionNumber(): number {
+    public getquestionNumber(): String {
         return this.questionNumber;
     }
-    public setquestionNumber(value: number) {
+    public setquestionNumber(value: String) {
         this.questionNumber = value;
     }
 
