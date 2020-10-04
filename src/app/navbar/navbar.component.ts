@@ -1,4 +1,5 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -8,18 +9,13 @@ import { Component, DoCheck, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit,DoCheck {
 
-  constructor() { }
+  constructor(  public router: Router  ) { }
   loginFlag : boolean = true;
   ngDoCheck(): void {
-   if( localStorage.getItem('AdminUser') === "true"){
-     this.adminFlag = true;
-   }
-   else{
-     this.adminFlag = false;
-   }
-   if(localStorage.getItem('userName') != undefined){
-        this.loginFlag = false
-   }
+  //  this.router.navigate(['SignUp'])
+    if (localStorage.getItem('loginFlag') != undefined){
+        this.loginFlag = false;
+    }
   }
   user : any;
   status : boolean = false;
@@ -37,7 +33,7 @@ export class NavbarComponent implements OnInit,DoCheck {
   logout(){
    localStorage.removeItem('userName');
    localStorage.removeItem('Name');
-   localStorage.removeItem('AdminUser');
+   localStorage.removeItem('loginFlag');
    this.loginFlag = true;
   }
 

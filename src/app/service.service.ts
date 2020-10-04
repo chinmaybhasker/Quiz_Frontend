@@ -24,8 +24,8 @@ export class ServiceService implements OnInit {
   sendRoomBookingResponse(data) : Observable<any>{
     return this.http.post<any>('http://localhost:8080/bookedResponse', data);
   }
-  getRoomsDetail(value1,value2) : Observable<any> {
-    return this.http.get<any>('http://localhost:8080/roomsDetails?formdate='+value1+'&todate='+value2);
+  getBestPerformer() : Observable<any> {
+    return this.http.get<any>('http://localhost:8080/BestPerformer');
   }
   postSignUpdata(data: signUpdata): Observable<string> {
     return this.http.post<string>('http://localhost:8080/add', data);

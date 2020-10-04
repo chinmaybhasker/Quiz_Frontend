@@ -48,35 +48,29 @@
 
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container">
-      <a href="index.html" class="navbar-brand">Bhasker's Hotel</a>
+      <a href="index.html" class="navbar-brand">Quiz Competition</a>
       <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav ml-auto">
-          <div  *ngIf="loginFlag">
+          <div *ngIf="loginFlag">
             <li class="nav-item ">
               <a class="nav-link" routerLink="login">Login </a>
             </li>
           </div>
-          <div  *ngIf="!loginFlag">
+          <div *ngIf="!loginFlag">
             <li class="nav-item ">
               <a class="nav-link" (click)="logout()">Logout </a>
             </li>
           </div>
-          
+
           <li class="nav-item">
             <a class="nav-link" routerLink="SignUp">SignUp</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLink="quiz">Quiz</a>
           </li>
-          
-          <div *ngIf="adminFlag">
-            <li class="nav-item">
-              <a class="nav-link" routerLink="admin">Admin Rights</a>
-            </li>
-          </div>
         </ul>
       </div>
     </div>

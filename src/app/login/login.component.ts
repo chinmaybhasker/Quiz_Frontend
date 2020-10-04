@@ -24,7 +24,14 @@ export class LoginComponent implements OnInit {
    responsemessage: string;
    loginForm: FormGroup;
    logindata: LoginData;
+   errormsg : any;
+   errorFlag : boolean;
    ngOnInit() {
+    if (localStorage.getItem('loginFlag') == undefined){
+      this.errorFlag = true;
+     this.errormsg = "Only Logged In User ,Can Attempt Quiz";
+  }
+
     this.loginForm = this.formBuilder.group({
       inputEmail: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(30),
       Validators.email]),
@@ -54,16 +61,14 @@ export class LoginComponent implements OnInit {
       this.flag = true;
       if (data['response'] == "Valid User") {
         this.responsemessage = "Login Successfull";
-        // this.appLoadServiceService.setMessage(true);
-        // this.appLoadServiceService.userproductDetailchecklogin(this.logindata.getEmailAddress());
-        console.log("I am in If condition" + data['response']);
-        // this.service.setusername(data['Name']);
+        this.errorFlag = false;
         localStorage.setItem('Name',data['Name']);
-        localStorage.setItem('AdminUser',data['adminAccess'])
-        
+        localStorage.setItem('loginFlag','true');
           localStorage.setItem('userName', this.loginForm.getRawValue().inputEmail);
         //  localStorage.setItem('password', this.loginForm.getRawValue().inputPassword);
-        
+        setTimeout(()=>{
+         this.route.navigate(['quiz']);
+        }, 2000);
         this.loginForm.reset();
       }
       else {

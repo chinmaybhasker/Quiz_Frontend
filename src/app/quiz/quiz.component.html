@@ -1,20 +1,20 @@
-<b>Q {{   obj.getquestionNumber()  }} )</b>
+<b>Q {{   questionNumber   }} )</b>
 {{  obj.getquestion() }}
 <br>
 <br>
-<input type= "radio"  [(ngModel)]="radioData" [value]="obj.getoptionA()">{{  obj.getoptionA() }}
+<input type= "radio"  [(ngModel)]="radioData" [value]="obj.getoptionA()"  id = "1">&nbsp;&nbsp;{{  obj.getoptionA() }}
 <br>
 <br>
-<input type= "radio"  [(ngModel)]="radioData" [value]="obj.getoptionB()">{{  obj.getoptionB()  }}
+<input type= "radio"  [(ngModel)]="radioData" [value]="obj.getoptionB()"  id = "2">&nbsp;&nbsp;{{  obj.getoptionB()  }}
 <br>
 <br>
-<input type= "radio" [(ngModel)]="radioData" [value]="obj.getoptionC()">{{  obj.getoptionC()  }}
+<input type= "radio" [(ngModel)]="radioData" [value]="obj.getoptionC()"  id = "3">&nbsp;&nbsp;{{  obj.getoptionC()  }}
 <br>
 <br>
-<input type= "radio" [(ngModel)]="radioData" [value]="obj.getoptionD()">{{  obj.getoptionD()  }}
+<input type= "radio" [(ngModel)]="radioData" [value]="obj.getoptionD()"  id = "4">&nbsp;&nbsp;{{  obj.getoptionD()  }}
 <br><br>
 <div>
-<button class="btn btn-primary" (click)="checkAnswer()" >Submit</button>&nbsp;&nbsp;
+<button class="btn btn-primary" (click)="checkAnswer()"  [disabled]="answerFlag" >Submit</button>&nbsp;&nbsp;
 <button class="btn btn-primary" [disabled]="correctFlag"  (click)="nextQuestion()">Next</button>
 </div>
 <b>{{msg}}</b>

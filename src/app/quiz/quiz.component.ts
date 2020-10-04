@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { performanceModal } from '../Model/performanceModal';
 import { Question } from '../Model/Question';
@@ -9,32 +9,97 @@ import { ServiceService } from '../service.service';
   templateUrl: './quiz.component.html',
   styleUrls: ['./quiz.component.css']
 })
-export class QuizComponent implements OnInit {
+export class QuizComponent implements OnInit,DoCheck {
 
-  questionNumber : any;
+  questionNumber : any = 0;
   obj : Question;
   correctFlag : boolean = true;
   radioData : any;
   msg : any;
   TotalQuestion : any = 0;
   correctQuestion : any = 0;
-
+  answerFlag : boolean = true;
 
   constructor(private service : ServiceService,public router: Router) { }
+  ngDoCheck(): void {
+    if (this.radioData == undefined){
+      this.answerFlag = true;
+    }
+    else{
+      this.answerFlag = false;
+    }
+  }
   
   ngOnInit(): void {
     this.questionNumber = 1;
     this.fetchQuestion();
+    if (localStorage.getItem('loginFlag') == undefined){
+      this.router.navigate(['login']);
   }
-
+  }
+  correctId : any = 0;
+  incorrectId : any = 0;
   checkAnswer(){
+   
+    this.correctId = 0;
+    this.incorrectId = 0;
       this.TotalQuestion += 1;
-      if(this.radioData === this.obj.getanswer()){
+      if(this.radioData === this.obj.getanswer().trim()){
+        
         this.correctQuestion += 1;
         this.correctFlag = false;
         this.msg = "Your Answer is correct!!!!!";
+        if ( this.radioData === this.obj.getoptionA()){
+          this.correctId = '1';
+        }
+        if ( this.radioData === this.obj.getoptionB()){
+          this.correctId = '2';
+        }
+        if ( this.radioData === this.obj.getoptionC()){
+          this.correctId = '3';
+        }
+        if ( this.radioData === this.obj.getoptionD()){
+          this.correctId =  '4';
+        }
+        if (this.correctId != 0){
+        document.getElementById(this.correctId).setAttribute("class", "colorclass");
+        }
+
       }
       else{
+        if ( this.obj.getanswer().trim() === this.obj.getoptionA().trim()){
+          this.correctId = '1';
+        }
+        if ( this.obj.getanswer().trim() === this.obj.getoptionB().trim()){
+          this.correctId = '2';
+        }
+        if ( this.obj.getanswer().trim() === this.obj.getoptionC().trim()){
+          this.correctId = '3';
+        }
+        if ( this.obj.getanswer().trim() === this.obj.getoptionD().trim()){
+          this.correctId = '4';
+        }
+        if (this.correctId != 0){
+        document.getElementById(this.correctId).setAttribute("class", "colorclass");
+        }
+
+        if ( this.radioData === this.obj.getoptionA().trim()){
+          this.incorrectId = '1';
+        }
+        if ( this.radioData === this.obj.getoptionB().trim()){
+          this.incorrectId = '2';
+        }
+        if ( this.radioData === this.obj.getoptionC().trim()){
+          this.incorrectId = '3';
+        }
+        if ( this.radioData === this.obj.getoptionD().trim()){
+          this.incorrectId = '4';
+        }
+        if (this.incorrectId != 0){
+        document.getElementById(this.incorrectId).setAttribute("class", "colorclass2");
+        }
+        
+
         this.correctFlag = false;
         this.msg ="Your Answer is Incorrect!!!!!"
       }
@@ -43,9 +108,13 @@ export class QuizComponent implements OnInit {
   finalMsg : any ;
   finalflag : boolean= false;
   nextQuestion(){
+    
+    this.radioData = undefined;
     this.correctFlag = true;
     this.msg = "";
-    if (this.obj.getendFlag() === "false"){
+    this.correctId = 0;
+    this.incorrectId = 0;
+    if (this.questionNumber < 5){
       this.questionNumber += 1;
       this.fetchQuestion();
      }

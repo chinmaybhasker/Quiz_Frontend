@@ -2,6 +2,10 @@
  <!-- <img src="assets\picture\download.jpg" style="object-fit: cover;" height="100%" width="100%">-->
   <div  >
 
+    <div *ngIf="errorFlag"  style="text-align: center;">
+         <b> {{ errormsg }}  </b>
+    </div>
+
     <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="onSubmit()" style=" margin-top: 10%;">
       <div class="loginMessage">
         <div *ngIf=flag>
