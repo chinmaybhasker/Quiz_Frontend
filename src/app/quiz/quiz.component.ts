@@ -62,7 +62,7 @@ export class QuizComponent implements OnInit,DoCheck {
           this.correctId =  '4';
         }
         if (this.correctId != 0){
-        document.getElementById(this.correctId).setAttribute("class", "colorclass");
+        document.getElementById(this.correctId).style.color = 'green';
         }
 
       }
@@ -80,7 +80,7 @@ export class QuizComponent implements OnInit,DoCheck {
           this.correctId = '4';
         }
         if (this.correctId != 0){
-        document.getElementById(this.correctId).setAttribute("class", "colorclass");
+        document.getElementById(this.correctId).style.color = 'green';
         }
 
         if ( this.radioData === this.obj.getoptionA().trim()){
@@ -96,7 +96,7 @@ export class QuizComponent implements OnInit,DoCheck {
           this.incorrectId = '4';
         }
         if (this.incorrectId != 0){
-        document.getElementById(this.incorrectId).setAttribute("class", "colorclass2");
+        document.getElementById(this.incorrectId).style.color = 'red';
         }
         
 
@@ -112,8 +112,12 @@ export class QuizComponent implements OnInit,DoCheck {
     this.radioData = undefined;
     this.correctFlag = true;
     this.msg = "";
-    this.correctId = 0;
-    this.incorrectId = 0;
+    if (this.correctId != 0){
+    document.getElementById(this.correctId).style.color = 'black';
+    }
+    if (this.incorrectId != 0){
+    document.getElementById(this.incorrectId).style.color = 'black';
+    }
     if (this.questionNumber < 5){
       this.questionNumber += 1;
       this.fetchQuestion();
