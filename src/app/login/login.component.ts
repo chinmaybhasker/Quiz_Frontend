@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
    ngOnInit() {
     if (localStorage.getItem('loginFlag') == undefined){
       this.errorFlag = true;
-     this.errormsg = "Only Logged In User,Can Attempt Quiz";
+     this.errormsg = "Only Logged In User, Can Attempt Quiz";
 
   }
 
